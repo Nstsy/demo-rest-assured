@@ -1,5 +1,6 @@
 package ru.taplink;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -7,6 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginTaplink {
     @Test
+    @DisplayName("Invalid Data")
     public void test1() {
         given()
                 .body(LoginRequestTaplink.getBody("111@gmail.com", "111222"))
@@ -21,6 +23,7 @@ public class LoginTaplink {
     }
 
     @Test
+    @DisplayName("Empty email, empty password")
     public void test2() {
         given()
                 .body(LoginRequestTaplink.getBody("", ""))
@@ -35,6 +38,7 @@ public class LoginTaplink {
     }
 
     @Test
+    @DisplayName("Invalid email, empty password")
     public void test3() {
         given()
                 .body(LoginRequestTaplink.getBody("111@gmail.com", ""))
@@ -49,6 +53,7 @@ public class LoginTaplink {
     }
 
     @Test
+    @DisplayName("Empty email, invalid password")
     public void test4() {
         given()
                 .body(LoginRequestTaplink.getBody("", "111222"))
@@ -63,6 +68,7 @@ public class LoginTaplink {
     }
 
     @Test
+    @DisplayName("Without token")
     public void test5() {
         given()
                 .body("{ \"email\": \"nstsy@gmail.com\", \"password\": \"gooETU1\", \"twofactor\": \"\" }")
@@ -77,6 +83,7 @@ public class LoginTaplink {
     }
 
     @Test
+    @DisplayName("Without token, without two factor")
     public void test6() {
         given()
                 .body("{ \"email\": \"nstsy@gmail.com\", \"password\": \"gooETU1\"}")
